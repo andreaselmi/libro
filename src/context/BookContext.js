@@ -30,6 +30,10 @@ const BooksContextProvider = (props) => {
     } else setStartIndex(startIndex + 10);
   };
 
+  const restartIndex = () => {
+    setStartIndex(0);
+  };
+
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line
@@ -43,6 +47,7 @@ const BooksContextProvider = (props) => {
         getSearch,
         startIndex,
         getIndex,
+        restartIndex,
       }}
     >
       {props.children}

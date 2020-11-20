@@ -6,11 +6,14 @@ import MyButton from "./Button";
 import { BookContext } from "../context/BookContext";
 
 const Header = () => {
-  const { search, getSearch, fetchData } = useContext(BookContext);
+  const { search, getSearch, fetchData, startIndex, restartIndex } = useContext(
+    BookContext
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchData();
+    restartIndex();
+    if (startIndex === 0) return fetchData();
   };
 
   return (
