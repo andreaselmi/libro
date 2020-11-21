@@ -1,11 +1,11 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import axios from "axios";
 
 export const BookContext = createContext();
 
 const BooksContextProvider = (props) => {
   const [books, setBooks] = useState([]);
-  const [search, setSearch] = useState("Madame Bovary");
+  const [search, setSearch] = useState("");
   const [startIndex, setStartIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -59,11 +59,6 @@ const BooksContextProvider = (props) => {
     setStartIndex(0);
   };
 
-  useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line
-  }, [startIndex]);
-
   const value = {
     books,
     fetchData,
@@ -74,6 +69,9 @@ const BooksContextProvider = (props) => {
     isLoading,
     error,
     errorMessage,
+    setError,
+    setIsLoading,
+    displayError,
   };
 
   return (

@@ -1,10 +1,9 @@
 import React from "react";
 import { Card, Col } from "react-bootstrap";
-import MyButton from "./Button";
 import { Link } from "react-router-dom";
 
 const Book = (props) => {
-  const { title, authors, img } = props;
+  const { title, authors, img, id } = props;
   return (
     <Col sm={6} md={4} lg={3} className="d-flex">
       <Card
@@ -28,7 +27,7 @@ const Book = (props) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer>
-          <Link to="/details"> More Details </Link>
+          <Link to={"/" + JSON.stringify(id)}> More Details </Link>
         </Card.Footer>
       </Card>
     </Col>

@@ -4,18 +4,29 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const TopNavbar = () => {
+  const refreshPage = () => {
+    window.location.reload(false);
+  };
+
   return (
     <Styles>
       <Navbar className="navbar">
         <Container>
           <Navbar.Brand className="navbar-brand navbar__h1">
-            <Link style={{ color: "black", textDecoration: "none" }} to="/">
-              libro.
-            </Link>
-          </Navbar.Brand>
-          <Navbar.Text>Powered by Google.</Navbar.Text>
-        </Container>
-      </Navbar>
+            <Link
+              onClick={refreshPage}
+              style={{
+                color: "black",
+                textDecoration: "none",
+              }}
+              to="/"
+            >
+              libro.{" "}
+            </Link>{" "}
+          </Navbar.Brand>{" "}
+          <Navbar.Text> Powered by Google. </Navbar.Text>{" "}
+        </Container>{" "}
+      </Navbar>{" "}
     </Styles>
   );
 };

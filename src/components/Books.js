@@ -19,6 +19,7 @@ const Books = () => {
               books.map((book) => (
                 <Book
                   key={book.id}
+                  id={book.id}
                   title={_.get(book, "volumeInfo.title", "Non disponibile")}
                   authors={_.get(book, "volumeInfo.authors", "Non disponibile")}
                   img={_.get(
@@ -29,7 +30,13 @@ const Books = () => {
                 />
               ))
             ) : (
-              <h1 style={{ margin: "20px 0 0 20px" }}>No results</h1>
+              <h1
+                style={{
+                  margin: "20px 0 0 20px",
+                }}
+              >
+                No results
+              </h1>
             )}
           </Row>
         </CardGroup>
