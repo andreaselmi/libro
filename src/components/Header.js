@@ -4,11 +4,19 @@ import styled from "styled-components";
 import books from "../img/books.png";
 import MyButton from "./Button";
 import { BookContext } from "../context/BookContext";
+import { Redirect } from "react-router-dom";
 
 const Header = () => {
-  const { search, getSearch, fetchData, startIndex, restartIndex } = useContext(
-    BookContext
-  );
+  const {
+    search,
+    getSearch,
+    fetchData,
+    startIndex,
+    restartIndex,
+    isLoading,
+    error,
+    errorMessage,
+  } = useContext(BookContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +29,13 @@ const Header = () => {
       <Jumbotron fluid className="jumbo">
         <Container>
           <h1 className="jumbo__h1"> Cerca la tua prossima avventura... </h1>
+          <span>
+            {error ? (
+              <p style={{ margin: "0", color: "red" }}>{errorMessage}</p>
+            ) : (
+              ""
+            )}
+          </span>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Control
@@ -28,15 +43,20 @@ const Header = () => {
                 onChange={getSearch}
                 type="text"
                 placeholder="es. Madame Bovary"
-                style={{
-                  maxWidth: "500px",
-                }}
+                style={{ maxWidth: "25rem" }}
               />
               <Form.Text className="text-muted">
                 "Un libro è un amico che non inganna mai."
               </Form.Text>
             </Form.Group>
-            <MyButton text="Search"> </MyButton>
+            <div style={{ display: "flex" }}>
+              <MyButton text="Search"></MyButton>
+              {isLoading ? (
+                <p style={{ margin: "8px 0 0 10px" }}>Loading...</p>
+              ) : (
+                <Redirect to="/" />
+              )}
+            </div>
           </Form>
         </Container>
       </Jumbotron>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Container } from "react-bootstrap";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const TopNavbar = () => {
   return (
@@ -8,7 +9,9 @@ const TopNavbar = () => {
       <Navbar className="navbar">
         <Container>
           <Navbar.Brand className="navbar-brand navbar__h1">
-            libro.
+            <Link style={{ color: "black", textDecoration: "none" }} to="/">
+              libro.
+            </Link>
           </Navbar.Brand>
           <Navbar.Text>Powered by Google.</Navbar.Text>
         </Container>
