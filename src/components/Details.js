@@ -8,61 +8,80 @@ import noImg from "../img/no-image.jpg";
 const Details = (props) => {
   const { setError, displayError } = useContext(BookContext);
   const [id, setId] = useState();
+  const noData = "Dato non disponibile";
 
   useEffect(() => {
+    let mounted = true;
     const fetchDataById = async () => {
       try {
         setError(false);
-        let newId = JSON.parse(props.match.params.details_id);
+        let newId = props.match.params.details_id;
         const result = await axios(
           "https://www.googleapis.com/books/v1/volumes/" + newId
         );
-        setId(result.data.volumeInfo);
+        if (mounted) {
+          setId(result.data.volumeInfo);
+        }
       } catch (err) {
         setError(true);
         displayError();
       }
     };
     fetchDataById();
-    console.log(id);
+    return () => {
+      mounted = false;
+    };
+    // eslint-disable-next-line
   }, []);
-
-  const noData = "Non disponibile";
 
   return (
     <Container className="d-flex">
       <Row>
         <Col md={6} className="text-center">
           <Image
-            style={{ width: "100%" }}
+            style={{
+              width: "100%",
+            }}
             src={_.get(id, "imageLinks.medium", noImg)}
             rounded
           />
         </Col>
         <Col md={6}>
-          <Card bg="Light" style={{ width: "100%" }} className="mb-2">
-            <Card.Header>{_.get(id, "title", noData)}</Card.Header>
+          <Card
+            bg="Light"
+            style={{
+              width: "100%",
+            }}
+            className="mb-2"
+          >
+            <Card.Header> {_.get(id, "title", noData)} </Card.Header>
             <Card.Body>
-              <Card.Title></Card.Title>
-              <Card.Text>{_.get(id, "description", noData)}</Card.Text>
-              <ul style={{ listStyle: "none" }}>
+              <Card.Title>
+                Sottotitolo: {_.get(id, "subtitle", noData)}
+              </Card.Title>
+              <Card.Text>
+                Descrizione: {_.get(id, "description", noData)}
+              </Card.Text>
+              <hr />
+              <ul
+                style={{
+                  listStyle: "none",
+                }}
+              >
+                <li>Lingua: {" " + _.get(id, "language", noData)}</li>
                 <li>
                   Data di pubblicazione:
                   {" " + _.get(id, "publishedDate", noData)}
                 </li>
+                <li>Pubblicato da: {" " + _.get(id, "publisher", noData)} </li>
                 <li>
-                  Pubblicato da:
-                  {" " + _.get(id, "publisher", noData)}
+                  Numero di pagine: {" " + _.get(id, "pageCount", noData)}
                 </li>
                 <li>
                   Book Link:
                   <a href={" " + _.get(id, "canonicalVolumeLink", noData)}>
                     {" " + _.get(id, "canonicalVolumeLink", noData)}
                   </a>
-                </li>
-                <li>
-                  Numero di pagine:
-                  {" " + _.get(id, "pageCount", noData)}
                 </li>
               </ul>
             </Card.Body>
@@ -77,25 +96,3 @@ const Details = (props) => {
 };
 
 export default Details;
-
-// {id ? (
-//   <Card className="mt-2" style={{ maxWidth: "30rem" }}>
-//     <Card.Img
-//       variant="top"
-//       style={{
-//         minHeight: "200px",
-//         objectFit: "cover",
-//       }}
-//     ></Card.Img>
-//     <Card.Body className="flex-fill">
-//       <Card.Title>  </Card.Title>
-//       <Card.Subtitle className="mb-2 text-muted">
-//
-//       </Card.Subtitle>
-//       <Card.Text></Card.Text>
-//     </Card.Body>
-
-//   </Card>
-// ) : (
-//   <p>Loading...</p>
-// )}

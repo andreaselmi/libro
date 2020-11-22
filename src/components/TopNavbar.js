@@ -34,7 +34,7 @@ const TopNavbar = () => {
 const Styles = styled.div`
   .navbar__h1 {
     color: black;
-    font-family: "nunito";
+    font-family: nunito, "sans-serif";
     font-weight: 400;
     font-size: 2rem;
     margin: 0;

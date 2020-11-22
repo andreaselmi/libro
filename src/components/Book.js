@@ -19,15 +19,16 @@ const Book = (props) => {
             objectFit: "cover",
           }}
           src={img}
-        ></Card.Img>
+        ></Card.Img>{" "}
         <Card.Body className="flex-fill">
-          <Card.Title> {title} </Card.Title>
+          <Card.Title> {title} </Card.Title>{" "}
           <Card.Text>
-            {authors.length > 1 ? authors[0] + " and others." : authors}
+            {" "}
+            {authors.length > 1 ? authors[0] + " and others." : authors}{" "}
           </Card.Text>
         </Card.Body>
         <Card.Footer>
-          <Link to={"/" + JSON.stringify(id)}> More Details </Link>
+          <Link to={"/" + id.toString()}> More Details </Link>
         </Card.Footer>
       </Card>
     </Col>

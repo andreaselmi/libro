@@ -3,7 +3,8 @@ import Header from "./components/Header";
 import BooksContextProvider from "./context/BookContext";
 import Books from "./components/Books";
 import Details from "./components/Details";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Footer from "./components/Footer";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -13,12 +14,12 @@ function App() {
           <TopNavbar />
           <Header />
           <Switch>
-            {/* <Books /> */}
-            <Route exact path="/" component={Books} />
-            <Route path="/:details_id" component={Details} />
-          </Switch>
-        </BooksContextProvider>
-      </Router>
+            <Route exact path="/" component={Books} />{" "}
+            <Route path="/:details_id" component={Details} />{" "}
+          </Switch>{" "}
+        </BooksContextProvider>{" "}
+        <Footer />
+      </Router>{" "}
     </>
   );
 }

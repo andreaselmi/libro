@@ -10,6 +10,7 @@ const BooksContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [ZeroTotalItems, setZeroTotalItems] = useState(false);
 
   const url = "https://www.googleapis.com/books/v1/volumes?q=";
 
@@ -19,9 +20,16 @@ const BooksContextProvider = (props) => {
       setIsLoading(true);
       const result = await axios(`${url}${search}&startIndex=${startIndex}`);
       console.log(result);
-      const data = await result.data.items;
-      setIsLoading(false);
-      setBooks(data);
+      if (result.data.totalItems === 0) {
+        setZeroTotalItems(true);
+        setIsLoading(false);
+        setBooks([]);
+      } else {
+        const data = await result.data.items;
+        setZeroTotalItems(false);
+        setIsLoading(false);
+        setBooks(data);
+      }
     } catch (err) {
       setError(true);
       displayError(err);
@@ -72,10 +80,14 @@ const BooksContextProvider = (props) => {
     setError,
     setIsLoading,
     displayError,
+    ZeroTotalItems,
   };
 
   return (
-    <BookContext.Provider value={value}>{props.children} </BookContext.Provider>
+    <BookContext.Provider value={value}>
+      {" "}
+      {props.children}{" "}
+    </BookContext.Provider>
   );
 };
 

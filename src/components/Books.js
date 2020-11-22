@@ -7,7 +7,7 @@ import noimage from "../img/no-image.jpg";
 import ChangeIndex from "./ChangeIndex";
 
 const Books = () => {
-  const { books } = useContext(BookContext);
+  const { books, ZeroTotalItems } = useContext(BookContext);
 
   return (
     <>
@@ -15,7 +15,8 @@ const Books = () => {
         <ChangeIndex />
         <CardGroup>
           <Row>
-            {books ? (
+            {" "}
+            {!ZeroTotalItems ? (
               books.map((book) => (
                 <Book
                   key={book.id}
