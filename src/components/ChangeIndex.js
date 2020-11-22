@@ -13,11 +13,11 @@ const ChangeIndex = () => {
   }, [startIndex]);
 
   return (
-    <Container>
+    <Container style={{ marginTop: "10px" }}>
       <Row>
         <Col>
           Risultati: {startIndex} - {startIndex + 10}{" "}
-        </Col>
+        </Col>{" "}
         <Col className="text-right">
           <button
             disabled={error || !books.length}
@@ -30,7 +30,7 @@ const ChangeIndex = () => {
             }}
           >
             -
-          </button>
+          </button>{" "}
           <button
             disabled={error || !books.length}
             className="btn btn-outline-info"
@@ -41,9 +41,9 @@ const ChangeIndex = () => {
             }}
           >
             +
-          </button>
-        </Col>
-      </Row>
+          </button>{" "}
+        </Col>{" "}
+      </Row>{" "}
     </Container>
   );
 };

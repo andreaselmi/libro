@@ -11,7 +11,7 @@ const Books = () => {
 
   return (
     <>
-      <Container>
+      <Container className="d-flex flex-column">
         <ChangeIndex />
         <CardGroup>
           <Row>
@@ -36,12 +36,13 @@ const Books = () => {
                   margin: "20px 0 0 20px",
                 }}
               >
-                No results
+                No results{" "}
               </h1>
-            )}
-          </Row>
-        </CardGroup>
-      </Container>
+            )}{" "}
+          </Row>{" "}
+        </CardGroup>{" "}
+        <ChangeIndex />
+      </Container>{" "}
     </>
   );
 };

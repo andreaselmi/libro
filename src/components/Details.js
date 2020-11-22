@@ -35,7 +35,7 @@ const Details = (props) => {
   }, []);
 
   return (
-    <Container className="d-flex">
+    <Container>
       <Row>
         <Col md={6} className="text-center">
           <Image
