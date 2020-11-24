@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { BookContext } from "../context/BookContext";
-import { Container, Card, Row, Col, Image } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import _ from "lodash";
 import noImg from "../img/no-image.jpg";
@@ -37,23 +37,18 @@ const Details = (props) => {
   return (
     <Container>
       <Row>
-        <Col md={6} className="text-center">
-          <Image
-            style={{
-              width: "100%",
-            }}
-            src={_.get(id, "imageLinks.medium", noImg)}
-            rounded
-          />
+        <Col md={2} className="text-right">
+          <Card>
+            <Card.Img
+              style={{
+                height: "auto",
+              }}
+              src={_.get(id, "imageLinks.thumbnail", noImg)}
+            ></Card.Img>
+          </Card>
         </Col>
-        <Col md={6}>
-          <Card
-            bg="Light"
-            style={{
-              width: "100%",
-            }}
-            className="mb-2"
-          >
+        <Col md={10}>
+          <Card bg="Light" className="mb-2">
             <Card.Header> {_.get(id, "title", noData)} </Card.Header>
             <Card.Body>
               <Card.Title>
