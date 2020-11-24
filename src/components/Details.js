@@ -63,18 +63,15 @@ const Details = (props) => {
                   listStyle: "none",
                 }}
               >
-                <li>Lingua: {" " + _.get(id, "language", noData)}</li>
+                <li>Lingua: {_.get(id, "language", noData)}</li>
                 <li>
-                  Data di pubblicazione:
-                  {" " + _.get(id, "publishedDate", noData)}
+                  Data di pubblicazione: {_.get(id, "publishedDate", noData)}
                 </li>
-                <li>Pubblicato da: {" " + _.get(id, "publisher", noData)} </li>
-                <li>
-                  Numero di pagine: {" " + _.get(id, "pageCount", noData)}
-                </li>
+                <li>Pubblicato da: {_.get(id, "publisher", noData)} </li>
+                <li>Numero di pagine: {_.get(id, "pageCount", noData)}</li>
                 <li>
                   Book Link:
-                  <a href={" " + _.get(id, "canonicalVolumeLink", "")}>
+                  <a href={_.get(id, "canonicalVolumeLink", "")}>
                     {" " + _.get(id, "canonicalVolumeLink", noData)}
                   </a>
                 </li>
