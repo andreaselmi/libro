@@ -74,7 +74,7 @@ const Details = (props) => {
                 </li>
                 <li>
                   Book Link:
-                  <a href={" " + _.get(id, "canonicalVolumeLink", noData)}>
+                  <a href={" " + _.get(id, "canonicalVolumeLink", "")}>
                     {" " + _.get(id, "canonicalVolumeLink", noData)}
                   </a>
                 </li>
