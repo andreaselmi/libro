@@ -40,13 +40,10 @@ const BooksContextProvider = (props) => {
     setIsLoading(false);
     if (err.response) {
       setErrorMessage("Inserisci un titolo valido");
-      console.log(errorMessage);
     } else if (err.request) {
       setErrorMessage("Impossibile completare la ricerca");
-      console.log(errorMessage);
     } else {
       setErrorMessage("Aggiorna la pagina o riprova più tardi");
-      console.log(errorMessage);
     }
   };
 

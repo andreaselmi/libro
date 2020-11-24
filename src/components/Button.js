@@ -1,6 +1,9 @@
 import React from "react";
+
+//style
 import { Button } from "react-bootstrap";
 import styled from "styled-components";
+
 import PropTypes from "prop-types";
 
 const MyButton = (props) => {
